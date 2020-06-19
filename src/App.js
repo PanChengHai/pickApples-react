@@ -24,7 +24,7 @@ class App extends Component {
   handleAddClick = () => {
     const { list } = this.state;
     const name = "红苹果 --";
-    const num = parseInt(Math.random() * 100000, 10);
+    const num = parseInt(Math.random() * 100000, 10)
     const weight = parseInt(Math.random() * 1000, 10);
     let index;
     if (list.length !== 0) {
