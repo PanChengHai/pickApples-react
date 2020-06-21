@@ -93,8 +93,8 @@ class App extends Component {//类继承组件component
   //list数组调用reduce（）方法，total初始值0，由0提供初始值，list数组所有元素.weight求和,返回值是一个数值总和
   getTotalWeight = (list) => list.reduce((total, item) => (total + item.weight), 0)
 
-  render() {//render(){}
-    const { list, number, totalWeight, eatApples, eatWeight } = this.state;
+  render() {//render(){}函数，返回值return(<div></div>)或者return{函数};
+    const { list, number, totalWeight, eatApples, eatWeight } = this.state;//es6的写法，最新，等价于const list=this.state.list;//周称呼为“解构”//与this.state.list建立关联
     return (
       <div className="appleBasket">
         <div className="title">苹果篮子</div>
