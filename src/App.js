@@ -50,10 +50,10 @@ class App extends Component {//类继承组件component
     })
   }
 
-  changeWeight = (currentWeight) => {//定义一个构造函数changeWeight，参数是currentWeight？？？？？？？？？？？？？？？？？？？，对象字面量this.setState({}),无返回值，功能：实现改变某个苹果重量
+  changeWeight = (currentWeight) => {//定义一个构造函数changeWeight，参数是currentWeight,currentWeight=apple.weight，对象字面量this.setState({}),无返回值，功能：实现改变某个苹果重量
     const { list } = this.state;//es6的写法，最新，等价于const list=this.state.list;//周称呼为“解构”//与this.state.list建立关联
     list.forEach(item => {//list数组调用forEach()方法，对list数组所有元素进行条件处理，item元素单词
-      if (item.weight === currentWeight) {//list数组元素苹果的重量===currentWeight,currentWeight未定义，？？？？？？？？？？？？
+      if (item.weight === currentWeight) {//list数组元素苹果的重量===currentWeight,currentWeight=apple.weight
         item.weight = parseInt(Math.random() * 1000, 10);  //比较所有苹果，如果有相同的，重新重量赋值 //如果苹果的重量和我们点击的那个苹果的重量相等,就改变点击的那个苹果的重量
       }
     })
@@ -64,10 +64,10 @@ class App extends Component {//类继承组件component
     })
   }
 
-  eat = (index) => {//定义一个构造函数eat，参数是index？？？？？？？？？？？？？？？？？？，对象字面量this.setState({}),无返回值，功能：实现吃掉某个苹果
+  eat = (index) => {//定义一个构造函数eat，参数是index, index={value.index},，对象字面量this.setState({}),无返回值，功能：实现吃掉某个苹果
     let { list, eatApples, eatWeight } = this.state;//es6的写法，最新，等价于const list=this.state.list;//周称呼为“解构”//与this.state.list+eatApples+eatWeight建立关联
 
-    //list.value是苹果元素，苹果.index是元素下标====index,index???????????过滤出新的苹果组成的数组
+    //list.value是苹果元素，苹果.index是元素下标====index, index={value.index}//list.value.index表示苹果属性的下标,定义变量index,过滤出新的苹果组成的数组
     const hasEatWeight = list.filter((v) => v.index === index)//定义全新变量hasEatWeight,list数组调用filter()方法，过滤，返回新的数组hasEatWeight，元素满足判断条件，
     eatWeight += hasEatWeight[0].weight  //新的数组hasEatWeight第一个元素苹果的重量+一个初始值0 //过滤出吃掉的苹果,累计求和一共吃掉的重量 
 
@@ -126,7 +126,7 @@ class App extends Component {//类继承组件component
         {/* 通过数据生成子元素,数组有多少对象就有多少子元素,并向子元素传递方法和值 */}
         {/* 数组list调用map（）方法，返回一个满足条件新的数组 ，value是数组元素，key是数组元素下标，应该用index表示*/}
         {list.map((value,key) => (
-          // 标签<AppleItem />一个函数变量？？？？？？？？？？？？？？？？？？、、、
+          // 标签<AppleItem />一个函数变量，在其他页面
           <AppleItem 
             key={key} //key,也就是index下标,变量，{}表达式，
             changeWeight={weight => this.changeWeight(weight)} //定义变量changeWeight,构造函数this.changeWeight,改变重量,weight 是当前苹果重量
