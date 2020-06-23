@@ -93,37 +93,62 @@ class App extends Component {//类继承组件component
   //list数组调用reduce（）方法，total初始值0，由0提供初始值，list数组所有元素.weight求和,返回值是一个数值总和
   getTotalWeight = (list) => list.reduce((total, item) => (total + item.weight), 0)
 
-  render() {//render(){}函数，返回值return(<div></div>)或者return{函数};
+  render() {//render(){}函数，返回值return(<div></div>)或者return{函数};一个组件类必须要实现一个 render 方法
     const { list, number, totalWeight, eatApples, eatWeight } = this.state;//es6的写法，最新，等价于const list=this.state.list;//周称呼为“解构”//与this.state.list建立关联
     return (
+      // JSX就是Javascript和XML结合的一种格式。React发明了JSX，利用HTML语法来创建虚拟DOM。当遇到<，JSX就当HTML解析，遇到{就当JavaScript解析。
+      // 表达式{}，{} 内可以放任何JavaScript代码。render都会把这些代码返回的内容如实渲染在页面上。相当于函数变量，
+      // 主标签，标签名：appleBasket
       <div className="appleBasket">
+        {/* 二级标签，标签名：title，标签内容：苹果篮子 */}
         <div className="title">苹果篮子</div>
+        {/* 二级标签，标签名：atats */}
         <div className="stats">
+            {/* 三级标签，标签名：section */}
             <div className="section">
+                {/* 四级标签，标签名：head,标签内容：当前 */}
               <div className="head">当前</div>
+                {/* 四级标签，标签名：content,标签内容：{number}变量表达式，{totalWeight}变量表达式 */}
               <div className="content">{number}个苹果,{totalWeight}克</div>
+            {/* 三级标签结束 */}
             </div>
-          <div className="section">
+        {/* 二级标签，标签名：section */}
+        <div className="section">
+            {/* 三级标签，标签名：head,标签内容：已吃掉 */} 
             <div className="head">已吃掉</div>
+            {/* 三级标签，标签名：content,标签内容：{eatApples}变量表达式，{eatWeight}变量表达式 */} 
             <div className="content">{eatApples}个苹果,{eatWeight}克</div>
-          </div>
+        {/* 二级标签结束 */}
         </div>
+         {/* 二级标签结束 */}
+        </div>
+        {/* {}表达式，变量，返回的内容会显示在页面中 */}
         {/* 通过数据生成子元素,数组有多少对象就有多少子元素,并向子元素传递方法和值 */}
+        {/* 数组list调用map（）方法，返回一个满足条件新的数组 ，value是数组元素，key是数组元素下标，应该用index表示*/}
         {list.map((value,key) => (
+          // 标签<AppleItem />一个函数变量？？？？？？？？？？？？？？？？？？、、、
           <AppleItem 
-            key={key} 
-            changeWeight={weight => this.changeWeight(weight)} 
-            eat={(index) => this.eat(index)} 
-            apple={value} 
-            index={value.index}
+            key={key} //key,也就是index下标,变量，{}表达式，
+            changeWeight={weight => this.changeWeight(weight)} //定义变量changeWeight,构造函数this.changeWeight,改变重量,weight 是当前苹果重量
+            eat={(index) => this.eat(index)} ////定义变量eat,构造函数this.eat改变苹果计数,weight 吃掉当前苹果
+            apple={value} //list.value就是一个苹果，定义变量apple,苹果属性赋值
+            index={value.index}//list.value.index表示苹果属性的下标,定义变量index,
           />
         ))}
+         {/* 二级标签，标签名：btn-div */}
         <div className="btn-div">
+           {/* 三级标签， 标签属性：onClick, 属性值：{}函数变量表达式, 标签内容：摘苹果 */} 
           <button onClick={this.handleAddClick}>摘苹果</button>
+         {/* 二级标签结束 */}
         </div>
+      {/* 主标签结束 */}
       </div>
-    );
-  }
-}
+    );//return()
+  }//render(){}
+}//component组件{}
 
+// 总结 其中export和export default最大的区别就是export不限变量数 可以一直写，而export default  
+// 只输出一次 而且 export出的变量想要使用必须使用{}来盛放，而export default 不需要 只要import任意一个名字来接收对象即可。　
+// export default可以跟在非匿名函数之前，也可以跟在匿名函数之前，同时也可以是一个对象之前。
+//与头部的import呼应，
 export default App;
